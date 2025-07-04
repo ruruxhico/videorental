@@ -14,10 +14,12 @@ if (isset($_GET['id'])) {
         <p><strong>Director:</strong> <?= htmlspecialchars($video['director']) ?></p>
         <p><strong>Release Year:</strong> <?= htmlspecialchars($video['release_year']) ?></p>
         
-        <?php if (!empty($video['poster'])): ?>
-            <p><strong>Poster:</strong><br>
-                <img src="<?= $video['poster'] ?>" alt="Poster" style="max-width: 200px;">
-            </p>
+        <?php if (!empty($video['poster']) && file_exists($video['poster'])): ?>
+        <p><strong>Poster:</strong><br>
+            <img src="<?= htmlspecialchars($video['poster']) ?>" style="max-width: 200px;">
+        </p>
+        <?php else: ?>
+            <p><strong>Poster:</strong> No poster available.</p>
         <?php endif; ?>
 
     </div>

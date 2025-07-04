@@ -18,10 +18,10 @@
             return mysqli_fetch_assoc($result);
         }
 
-        function addVideo($title, $director, $release_year) {
+        function addVideo($title, $director, $release_year, $poster) {
             global $conn;
-            $stmt = mysqli_prepare($conn, "INSERT INTO videos (title, director, release_year, poster) VALUES (?, ?, ?)");
-            mysqli_stmt_bind_param($stmt, "ssi", $title, $director, $release_year, $poster);
+            $stmt = mysqli_prepare($conn, "INSERT INTO videos (title, director, release_year, poster) VALUES (?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssis", $title, $director, $release_year, $poster);
             return mysqli_stmt_execute($stmt);
         }
 

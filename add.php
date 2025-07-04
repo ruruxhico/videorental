@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="card-header">
         <h3 class="card-title">Add New Video</h3>
     </div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="card-body">
             <div class="form-group">
                 <label>Title</label>
