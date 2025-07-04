@@ -13,6 +13,13 @@ if (isset($_GET['id'])) {
         <p><strong>Title:</strong> <?= htmlspecialchars($video['title']) ?></p>
         <p><strong>Director:</strong> <?= htmlspecialchars($video['director']) ?></p>
         <p><strong>Release Year:</strong> <?= htmlspecialchars($video['release_year']) ?></p>
+        
+        <?php if (!empty($video['poster'])): ?>
+            <p><strong>Poster:</strong><br>
+                <img src="<?= $video['poster'] ?>" alt="Poster" style="max-width: 200px;">
+            </p>
+        <?php endif; ?>
+
     </div>
     <div class="card-footer">
         <a href="index.php?page=view" class="btn btn-secondary">Back to List</a>

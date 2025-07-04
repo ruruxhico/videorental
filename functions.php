@@ -20,15 +20,22 @@
 
         function addVideo($title, $director, $release_year) {
             global $conn;
-            $stmt = mysqli_prepare($conn, "INSERT INTO videos (title, director, release_year) VALUES (?, ?, ?)");
-            mysqli_stmt_bind_param($stmt, "ssi", $title, $director, $release_year);
+            $stmt = mysqli_prepare($conn, "INSERT INTO videos (title, director, release_year, poster) VALUES (?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssi", $title, $director, $release_year, $poster);
             return mysqli_stmt_execute($stmt);
         }
 
-        function updateVideo($id, $title, $director, $release_year) {
+        function updateVideo($id, $title, $director, $release_year, $poster = null) {
             global $conn;
-            $stmt = mysqli_prepare($conn, "UPDATE videos SET title = ?, director = ?, release_year = ? WHERE id = ?");
-            mysqli_stmt_bind_param($stmt, "ssii", $title, $director, $release_year, $id);
+
+            if ($poster) {
+                $stmt = mysqli_prepare($conn, "UPDATE videos SET title = ?, director = ?, release_year = ?, poster = ? WHERE id = ?");
+                mysqli_stmt_bind_param($stmt, "ssisi", $title, $director, $release_year, $poster, $id);
+            } else {
+                $stmt = mysqli_prepare($conn, "UPDATE videos SET title = ?, director = ?, release_year = ? WHERE id = ?");
+                mysqli_stmt_bind_param($stmt, "ssii", $title, $director, $release_year, $id);
+            }
+
             return mysqli_stmt_execute($stmt);
         }
 

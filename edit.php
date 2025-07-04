@@ -7,7 +7,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $director = $_POST['director'];
     $release_year = $_POST['release_year'];
 
-    if (updateVideo($id, $title, $director, $release_year)) {
+    $poster = null;
+
+    if (isset($_FILES['poster']) && $_FILES['poster']['error'] === 0) {
+        $uploadDir = 'uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $posterName = basename($_FILES['poster']['name']);
+        $targetFile = $uploadDir . time() . '_' . $posterName;
+
+        if (move_uploaded_file($_FILES['poster']['tmp_name'], $targetFile)) {
+            $poster = $targetFile;
+        }
+    }
+
+
+    if (updateVideo($id, $title, $director, $release_year, $poster)) {
         header("Location: index.php?page=view");
         exit();
     } else {
@@ -31,7 +48,7 @@ if (isset($_GET['id'])) {
     <div class="card-header">
         <h3 class="card-title">Edit Video</h3>
     </div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $video['id'] ?>">
         <div class="card-body">
             <div class="form-group">
@@ -46,6 +63,19 @@ if (isset($_GET['id'])) {
                 <label>Release Year</label>
                 <input type="number" name="release_year" class="form-control" value="<?= $video['release_year'] ?>" required>
             </div>
+
+            <div class="form-group">
+            <label>Change Poster (optional)</label>
+            <input type="file" name="poster" class="form-control">
+            </div>
+
+        <?php if (!empty($video['poster'])): ?>
+            <div class="form-group">
+                <label>Current Poster:</label><br>
+                <img src="<?= $video['poster'] ?>" alt="Poster" style="max-width: 150px;">
+            </div>
+        <?php endif; ?>
+
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-info">Update Video</button>
