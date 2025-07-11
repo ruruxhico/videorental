@@ -7,9 +7,10 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <!-- Sidebar -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo & Toggle Button -->
+
     <div class="d-flex align-items-center justify-content-between brand-link">
         <span class="brand-text font-weight-light">Video Rental</span>
+
         <button id="sidebarToggle" class="sidebar-toggle-btn" title="Toggle Sidebar">☰</button>
     </div>
 
@@ -45,9 +46,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 </aside>
 
-
-<!-- Sidebar toggle script -->
-
+<!-- for sidebar -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const toggleBtn = document.getElementById("sidebarToggle");
