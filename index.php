@@ -9,10 +9,10 @@ $page = $_GET['page'] ?? 'home';
 <head>
     <meta charset="UTF-8">
     <title>Video Rental System</title>
-    <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css"> 
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
