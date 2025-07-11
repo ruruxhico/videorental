@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Login</b>Page</a>
+        <a href="#"><b>Login</a>
     </div>
     <!-- Login form -->
     <div class="card">
